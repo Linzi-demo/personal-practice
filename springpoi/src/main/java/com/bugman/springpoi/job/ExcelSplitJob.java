@@ -48,7 +48,12 @@ public class ExcelSplitJob {
                     break;
                 }
                 XSSFCell cell = row.getCell(dealCol);
-                String value = cell.getStringCellValue();
+                String value="";
+                try {
+                    value = cell.getStringCellValue();
+                }catch (Exception e){
+                    LOG.error("获取单元格值失败，行数："+(rowNum+1),e);
+                }
                 String[] splitValues = splitValue(value);
                 if(splitValues==null){
                     rowNum++;
