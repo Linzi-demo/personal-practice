@@ -1,4 +1,4 @@
-package com.grove.leetcode.app;
+package com.grove.leetcode.app.tree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,26 @@ public class App144 {
     /**
      * 还有递归的解法
      */
+    public List<Integer> preorderTraversal2(TreeNode root) {
+        if (root == null) {
+            return new ArrayList<>();
+        }
 
+        List<Integer> result = new ArrayList<>();
+
+        scan(root, result);
+
+        return result;
+    }
+
+    private void scan(TreeNode root, List<Integer> result) {
+        if (root == null) {
+            return;
+        }
+        result.add(root.val);
+        scan(root.left, result);
+        scan(root.right, result);
+    }
 
     class TreeNode {
         int val;

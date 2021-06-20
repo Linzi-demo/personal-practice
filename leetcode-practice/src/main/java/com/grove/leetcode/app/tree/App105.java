@@ -1,4 +1,4 @@
-package com.grove.leetcode.app;
+package com.grove.leetcode.app.tree;
 
 import com.grove.leetcode.model.TreeNode;
 
@@ -12,6 +12,7 @@ public class App105 {
         int preLength = preorder.length;
         int inLength = inorder.length;
 
+        // 记录各个节点在中序数组中的位置，方便后续直接查找
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < inorder.length; i++) {
             map.put(inorder[i], i);
@@ -25,13 +26,16 @@ public class App105 {
             return null;
         }
 
+        // 前序遍历数组开始的第一个节点即为根节点
         int rootVal = preorder[preleft];
         TreeNode root = new TreeNode(rootVal);
 
         Integer pIndex = map.get(rootVal);
 
+        // 传递左子树，前序和中序数组范围
         root.left = buildTree(preorder, preleft + 1, pIndex - inLeft + preleft, map, inLeft, pIndex - 1);
 
+        // 传递右子树，前序和中序数组范围
         root.right = buildTree(preorder, pIndex - inLeft + preleft + 1, preRight, map, pIndex + 1, inRight);
 
         return root;
