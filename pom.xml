@@ -11,6 +11,8 @@
     <modules>
         <module>bigdata</module>
         <module>middleware</module>
+        <module>spring-practice</module>
+        <module>leetcode-practice</module>
     </modules>
 
 
